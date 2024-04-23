@@ -1,0 +1,269 @@
+.jobs-container {
+  background-color: #000000;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.jobs-body-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  margin-top: 26px;
+}
+
+.jobs-search-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: transparent;
+  border: 1px solid #64748b;
+  height: 36px;
+  width: 100%;
+  border-radius: 4px;
+}
+
+.search-input-lg {
+  display: none;
+}
+
+.jobs-search-input {
+  background-color: transparent;
+  border: none;
+  height: 34px;
+  width: 79%;
+  color: #f8fafc;
+  font-family: 'Roboto';
+  font-size: 16px;
+  padding: 10px;
+}
+
+.jobs-search-icon-button {
+  background-color: #272727;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border: none;
+  height: 34px;
+  width: 20%;
+}
+
+.search-icon {
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+}
+
+.jobs-employment-salary-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.horizontal-lines {
+  border-color: #64748b;
+  width: 100%;
+}
+
+.employment-input-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.employment-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  list-style-type: none;
+  width: 100%;
+}
+
+.employment-heading {
+  color: #f8fafc;
+  font-family: 'Roboto';
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+
+.employment-checkbox-card {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.employment-checkbox {
+  margin-right: 8px;
+  cursor: pointer;
+  outline: none;
+}
+
+.employment-checkbox-label {
+  color: #f8fafc;
+  font-family: 'Roboto';
+  font-size: 12px;
+  cursor: pointer;
+  outline: none;
+}
+
+.salary-range-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.salary-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.salary-form-heading {
+  color: #f8fafc;
+  font-family: 'Roboto';
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+
+.salary-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  list-style-type: none;
+  width: 100%;
+}
+
+.salary-radio-card {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.salary-radio {
+  margin-right: 8px;
+  cursor: pointer;
+  outline: none;
+}
+
+.salary-radio-label {
+  color: #f8fafc;
+  font-family: 'Roboto';
+  font-size: 12px;
+  cursor: pointer;
+  outline: none;
+}
+
+.jobs-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .jobs-body-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 90%;
+    margin-top: 26px;
+  }
+
+  .search-input-sm {
+    display: none;
+  }
+
+  .search-input-lg {
+    display: flex;
+    width: 56%;
+  }
+
+  .jobs-search-input {
+    background-color: transparent;
+    border: none;
+    height: 34px;
+    width: 79%;
+    color: #f8fafc;
+    font-family: 'Roboto';
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  .search-icon {
+    font-size: 16px;
+  }
+
+  .jobs-employment-salary-container {
+    width: 30%;
+  }
+
+  .horizontal-lines {
+    border-color: #64748b;
+    border: 1px solid;
+    width: 100%;
+  }
+
+  .employment-heading {
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 20px;
+    margin-bottom: 24px;
+  }
+
+  .employment-checkbox-card {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .employment-checkbox {
+    height: 14px;
+    width: 14px;
+    margin-right: 10px;
+  }
+
+  .employment-checkbox-label {
+    font-size: 14px;
+  }
+
+  .salary-form-heading {
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 20px;
+    margin-bottom: 24px;
+  }
+
+  .salary-radio-card {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .salary-radio {
+    height: 14px;
+    width: 14px;
+    margin-right: 10px;
+  }
+
+  .salary-radio-label {
+    font-size: 14px;
+  }
+
+  .jobs-list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 66%;
+  }
+}
