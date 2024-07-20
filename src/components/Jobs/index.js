@@ -22,6 +22,7 @@ class Jobs extends Component {
     seachInput: '',
     employmentType: '',
     salaryRange: '',
+    location: '',
   }
 
   componentDidMount() {
@@ -29,9 +30,9 @@ class Jobs extends Component {
   }
 
   getJobsList = async () => {
-    const {employmentType, salaryRange, seachInput} = this.state
+    const {employmentType, salaryRange, seachInput, location} = this.state
     const jwtToken = Cookies.get('jwt_token')
-    const url = `https://apis.ccbp.in/jobs?employment_type=${employmentType}&minimum_package=${salaryRange}&search=${seachInput}`
+    const url = `https://apis.ccbp.in/jobs?employment_type=${employmentType}&minimum_package=${salaryRange}&location=${location}&search=${seachInput}`
     const options = {
       method: 'GET',
       headers: {
@@ -103,6 +104,8 @@ class Jobs extends Component {
 
     if (checked) {
       updatedEmploymentType = employmentType ? `${employmentType},${id}` : id
+
+      console.log(updatedEmploymentType)
     } else {
       updatedEmploymentType = employmentType
         .split(',')
@@ -171,6 +174,43 @@ class Jobs extends Component {
     this.setState({jobsApiView: apiJobsList.loader}, this.getJobsList)
   }
 
+  onChangeLocation = event => {
+    this.setState(
+      {location: event.target.id, jobsApiView: apiJobsList.loader},
+      this.getJobsList,
+    )
+  }
+
+  renderLocations = () => {
+    const {locationsList} = this.props
+
+    return (
+      <div className="employment-input-card">
+        <h1 className="employment-heading">Locations</h1>
+        <ul className="employment-list">
+          {locationsList.map(eachLocation => {
+            const {id, location} = eachLocation
+
+            return (
+              <li className="employment-checkbox-card" key={id}>
+                <input
+                  name="location"
+                  onChange={this.onChangeLocation}
+                  className="employment-checkbox"
+                  id={id}
+                  type="checkbox"
+                />
+                <label className="employment-checkbox-label" htmlFor={id}>
+                  {location}
+                </label>
+              </li>
+            )
+          })}
+        </ul>
+      </div>
+    )
+  }
+
   render() {
     const {jobsApiView, jobsList} = this.state
 
@@ -201,6 +241,8 @@ class Jobs extends Component {
             {this.renderTypesOfEmployment()}
             <hr className="horizontal-lines" />
             {this.renderSalaryRange()}
+            <hr className="horizontal-lines" />
+            {this.renderLocations()}
           </div>
           <div className="jobs-list-container">
             <div className="jobs-search-card search-input-lg">

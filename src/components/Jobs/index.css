@@ -206,6 +206,7 @@
 
   .jobs-employment-salary-container {
     width: 30%;
+    position: sticky;
   }
 
   .horizontal-lines {

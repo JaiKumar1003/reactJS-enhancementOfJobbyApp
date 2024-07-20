@@ -72,7 +72,7 @@ class JobsItemDetails extends Component {
           <img
             className="job-life-at-company-image"
             src={imageUrl}
-            alt="life"
+            alt="life at company"
           />
         </div>
       </div>

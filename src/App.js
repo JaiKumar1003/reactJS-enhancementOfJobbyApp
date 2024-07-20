@@ -48,6 +48,14 @@ const salaryRangesList = [
   },
 ]
 
+const locationsList = [
+  {id: 'HYDERABAD', location: 'Hyderabad'},
+  {id: 'BANGALORE', location: 'Bangalore'},
+  {id: 'CHENNAI', location: 'Chennai'},
+  {id: 'DELHI', location: 'Delhi'},
+  {id: 'MUMBAI', location: 'Mumbai'},
+]
+
 // Replace your code here
 const App = () => (
   <Switch>
@@ -61,6 +69,7 @@ const App = () => (
           {...props}
           employmentTypes={employmentTypesList}
           salaryRanges={salaryRangesList}
+          locationsList={locationsList}
         />
       )}
     />

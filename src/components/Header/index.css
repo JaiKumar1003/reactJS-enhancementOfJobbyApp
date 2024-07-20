@@ -6,10 +6,14 @@
   padding-left: 20px;
   height: 70px;
   width: 100%;
+  top: 0px;
+  position: sticky;
 }
 
 .header-container-lg {
   display: none;
+  top: 0px;
+  position: sticky;
 }
 
 .header-list {
