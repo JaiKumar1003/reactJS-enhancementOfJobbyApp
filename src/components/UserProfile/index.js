@@ -14,9 +14,6 @@ class UserProfile extends Component {
   state = {
     profileView: apiProfileView.loading,
     userProfile: '',
-    seachInput: '',
-    employmentType: '',
-    salaryRange: '',
   }
 
   componentDidMount() {

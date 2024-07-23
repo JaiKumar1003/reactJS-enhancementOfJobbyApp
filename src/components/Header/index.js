@@ -57,16 +57,25 @@ const Header = props => {
       </Link>
       <div>
         <Link to="/" className="common-link">
-          <button type="button" className="header-common-button">
+          <button
+            aria-label="home button"
+            type="button"
+            className="header-common-button"
+          >
             <TiHome className="header-icons" />
           </button>
         </Link>
         <Link to="/jobs" className="common-link">
-          <button type="button" className="header-common-button">
+          <button
+            aria-label="jobs button"
+            type="button"
+            className="header-common-button"
+          >
             <BsBriefcaseFill className="header-icons" />
           </button>
         </Link>
         <button
+          aria-label="logout button"
           onClick={onClickLogout}
           type="button"
           className="header-common-button"

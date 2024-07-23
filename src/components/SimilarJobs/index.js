@@ -61,7 +61,9 @@ const SimilarJobs = props => {
             <li key={id} className="similar-jobs-item">
               <div className="similar-jobs-card">
                 {renderJobImageName(updatedSimilarJob)}
-                <h1 className="similar-jobs-description-heading">Description</h1>
+                <h1 className="similar-jobs-description-heading">
+                  Description
+                </h1>
                 <p className="similar-jobs-description">{jobDescription}</p>
                 {renderLocationSalary(updatedSimilarJob)}
               </div>

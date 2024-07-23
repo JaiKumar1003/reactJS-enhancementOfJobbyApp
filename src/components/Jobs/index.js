@@ -22,7 +22,8 @@ class Jobs extends Component {
     seachInput: '',
     employmentType: '',
     salaryRange: '',
-    location: '',
+    location: [],
+    locationsBasedJobsList: [],
   }
 
   componentDidMount() {
@@ -30,9 +31,9 @@ class Jobs extends Component {
   }
 
   getJobsList = async () => {
-    const {employmentType, salaryRange, seachInput, location} = this.state
+    const {employmentType, salaryRange, seachInput} = this.state
     const jwtToken = Cookies.get('jwt_token')
-    const url = `https://apis.ccbp.in/jobs?employment_type=${employmentType}&minimum_package=${salaryRange}&location=${location}&search=${seachInput}`
+    const url = `https://apis.ccbp.in/jobs?employment_type=${employmentType}&minimum_package=${salaryRange}&search=${seachInput}`
     const options = {
       method: 'GET',
       headers: {
@@ -175,10 +176,29 @@ class Jobs extends Component {
   }
 
   onChangeLocation = event => {
-    this.setState(
-      {location: event.target.id, jobsApiView: apiJobsList.loader},
-      this.getJobsList,
-    )
+    const {jobsList, location} = this.state
+    const {id, checked} = event.target
+
+    let newLocationsList = []
+
+    if (checked) {
+      newLocationsList = location.length === 0 ? [id] : [...location, id]
+    } else {
+      newLocationsList = location.filter(eachLocation => eachLocation !== id)
+    }
+
+    const locationsBasedJobs = jobsList.filter(eachJob => {
+      if (newLocationsList.length === 1) {
+        return eachJob.location === newLocationsList[0]
+      }
+
+      return newLocationsList.includes(eachJob.location)
+    })
+
+    this.setState({
+      location: newLocationsList,
+      locationsBasedJobsList: locationsBasedJobs,
+    })
   }
 
   renderLocations = () => {
@@ -197,10 +217,10 @@ class Jobs extends Component {
                   name="location"
                   onChange={this.onChangeLocation}
                   className="employment-checkbox"
-                  id={id}
+                  id={location}
                   type="checkbox"
                 />
-                <label className="employment-checkbox-label" htmlFor={id}>
+                <label className="employment-checkbox-label" htmlFor={location}>
                   {location}
                 </label>
               </li>
@@ -212,7 +232,7 @@ class Jobs extends Component {
   }
 
   render() {
-    const {jobsApiView, jobsList} = this.state
+    const {jobsApiView, jobsList, location, locationsBasedJobsList} = this.state
 
     return (
       <div className="jobs-container">
@@ -228,6 +248,7 @@ class Jobs extends Component {
                 placeholder="Search"
               />
               <button
+                aria-label="search button sm"
                 onClick={this.onClickSearchIcon}
                 className="jobs-search-icon-button"
                 type="button"
@@ -254,6 +275,7 @@ class Jobs extends Component {
                 placeholder="Search"
               />
               <button
+                aria-label="seach button lg"
                 onClick={this.onClickSearchIcon}
                 className="jobs-search-icon-button"
                 type="button"
@@ -263,7 +285,7 @@ class Jobs extends Component {
               </button>
             </div>
             <JobsList
-              jobsList={jobsList}
+              jobsList={location.length > 0 ? locationsBasedJobsList : jobsList}
               onClickFailureJobs={this.onClickFailureBtn}
               jobsApiView={jobsApiView}
             />

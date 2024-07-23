@@ -38,15 +38,13 @@ class Login extends Component {
   onSubmitForm = async event => {
     event.preventDefault()
     const {username, password} = this.state
-    
+
     const data = await this.getAuthentication()
     if (username === '') {
       this.setState({username: '', password: '', errorMsg: data.error_msg})
-    }
-    else if (password === '') {
+    } else if (password === '') {
       this.setState({username: '', password: '', errorMsg: data.error_msg})
-    }
-    else {
+    } else {
       const jwtToken = data.jwt_token
 
       if (jwtToken === undefined) {
