@@ -20,78 +20,49 @@ const Header = props => {
       <li>
         <Link to="/" className="common-link">
           <img
-            className="website-logo-lg"
+            className="website-logo"
             src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
             alt="website logo"
           />
         </Link>
       </li>
-      <li className="header-lg-home-jobs-card">
-        <Link to="/" className="common-link">
-          <p className="header-lg-home">Home</p>
-        </Link>
-        <Link to="/jobs" className="common-link">
-          <p className="header-lg-jobs">Jobs</p>
-        </Link>
-      </li>
-      <li>
-        <button
-          type="button"
-          className="header-lg-logout-button header-common-button"
-          onClick={onClickLogout}
-        >
-          Logout
-        </button>
-      </li>
-    </ul>
-  )
-
-  const renderMobileView = () => (
-    <>
-      <Link to="/" className="common-link">
-        <img
-          className="website-logo-sm"
-          src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
-          alt="website logo"
-        />
-      </Link>
-      <div>
+      <li className="header-home-jobs-card">
         <Link to="/" className="common-link">
           <button
             aria-label="home button"
             type="button"
-            className="header-common-button"
+            className="header-common-button header-common-sm"
           >
             <TiHome className="header-icons" />
           </button>
+          <p className="header-lg-home">Home</p>
         </Link>
         <Link to="/jobs" className="common-link">
           <button
             aria-label="jobs button"
             type="button"
-            className="header-common-button"
+            className="header-common-button header-common-sm"
           >
             <BsBriefcaseFill className="header-icons" />
           </button>
+          <p className="header-lg-jobs">Jobs</p>
         </Link>
+      </li>
+      <li>
         <button
           aria-label="logout button"
           onClick={onClickLogout}
           type="button"
-          className="header-common-button"
+          className="header-common-button header-lg-logout-button"
         >
           <FiLogOut className="header-icons" />
+          <span className="logout-text">Logout</span>
         </button>
-      </div>
-    </>
+      </li>
+    </ul>
   )
 
-  return (
-    <>
-      <div className="header-container-sm">{renderMobileView()}</div>
-      <div className="header-container-lg">{renderDesktopView()}</div>
-    </>
-  )
+  return <div className="header-container">{renderDesktopView()}</div>
 }
 
 export default withRouter(Header)
