@@ -22,8 +22,7 @@ class Jobs extends Component {
     seachInput: '',
     employmentType: '',
     salaryRange: '',
-    location: [],
-    locationsBasedJobsList: [],
+    activeLocations: [],
   }
 
   componentDidMount() {
@@ -31,7 +30,12 @@ class Jobs extends Component {
   }
 
   getJobsList = async () => {
-    const {employmentType, salaryRange, seachInput} = this.state
+    const {
+      employmentType,
+      salaryRange,
+      seachInput,
+      activeLocations,
+    } = this.state
     const jwtToken = Cookies.get('jwt_token')
     const url = `https://apis.ccbp.in/jobs?employment_type=${employmentType}&minimum_package=${salaryRange}&search=${seachInput}`
     const options = {
@@ -44,7 +48,7 @@ class Jobs extends Component {
     if (response.ok) {
       const data = await response.json()
       const {jobs} = data
-      const updatedJobs = jobs.map(eachJob => ({
+      let updatedJobs = jobs.map(eachJob => ({
         id: eachJob.id,
         title: eachJob.title,
         location: eachJob.location,
@@ -54,6 +58,17 @@ class Jobs extends Component {
         jobDescription: eachJob.job_description,
         packagePerAnnum: eachJob.package_per_annum,
       }))
+
+      if (activeLocations.length !== 0) {
+        updatedJobs = updatedJobs.filter(eachJob => {
+          if (activeLocations.length === 1) {
+            return eachJob.location === activeLocations[0]
+          }
+
+          return activeLocations.includes(eachJob.location)
+        })
+      }
+
       this.setState({jobsList: updatedJobs, jobsApiView: apiJobsList.success})
     } else {
       this.setState({jobsList: [], jobsApiView: apiJobsList.failure})
@@ -176,29 +191,27 @@ class Jobs extends Component {
   }
 
   onChangeLocation = event => {
-    const {jobsList, location} = this.state
+    const {activeLocations} = this.state
     const {id, checked} = event.target
 
     let newLocationsList = []
 
     if (checked) {
-      newLocationsList = location.length === 0 ? [id] : [...location, id]
+      newLocationsList =
+        activeLocations.length === 0 ? [id] : [...activeLocations, id]
     } else {
-      newLocationsList = location.filter(eachLocation => eachLocation !== id)
+      newLocationsList = activeLocations.filter(
+        eachLocation => eachLocation !== id,
+      )
     }
 
-    const locationsBasedJobs = jobsList.filter(eachJob => {
-      if (newLocationsList.length === 1) {
-        return eachJob.location === newLocationsList[0]
-      }
-
-      return newLocationsList.includes(eachJob.location)
-    })
-
-    this.setState({
-      location: newLocationsList,
-      locationsBasedJobsList: locationsBasedJobs,
-    })
+    this.setState(
+      {
+        activeLocations: newLocationsList,
+        jobsApiView: apiJobsList.loader,
+      },
+      this.getJobsList,
+    )
   }
 
   renderLocations = () => {
@@ -232,7 +245,7 @@ class Jobs extends Component {
   }
 
   render() {
-    const {jobsApiView, jobsList, location, locationsBasedJobsList} = this.state
+    const {jobsApiView, jobsList} = this.state
 
     return (
       <div className="jobs-container">
@@ -285,7 +298,7 @@ class Jobs extends Component {
               </button>
             </div>
             <JobsList
-              jobsList={location.length > 0 ? locationsBasedJobsList : jobsList}
+              jobsList={jobsList}
               onClickFailureJobs={this.onClickFailureBtn}
               jobsApiView={jobsApiView}
             />
