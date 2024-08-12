@@ -55,7 +55,7 @@ class JobsItemDetails extends Component {
     }
   }
 
-  renderLifeAtCompany = updatedJob => {
+  static renderLifeAtCompany(updatedJob) {
     const {lifeAtCompany} = updatedJob
     const updatedLifeAtCompany = {
       imageUrl: lifeAtCompany.image_url,
@@ -79,7 +79,7 @@ class JobsItemDetails extends Component {
     )
   }
 
-  renderSkills = updatedJob => {
+  static renderSkills(updatedJob) {
     const {skills} = updatedJob
 
     return (
@@ -109,7 +109,7 @@ class JobsItemDetails extends Component {
     )
   }
 
-  renderDescription = updatedJob => {
+  static renderDescription(updatedJob) {
     const {jobDescription, companyWebsiteUrl} = updatedJob
 
     return (
@@ -130,7 +130,7 @@ class JobsItemDetails extends Component {
     )
   }
 
-  renderLocationSalary = updatedJob => {
+  static renderLocationSalary(updatedJob) {
     const {location, employmentType, packagePerAnnum} = updatedJob
     return (
       <div className="job-item-location-salary-card">
@@ -148,7 +148,7 @@ class JobsItemDetails extends Component {
     )
   }
 
-  renderJobImageName = updatedJob => {
+  static renderJobImageName(updatedJob) {
     const {rating, title, companyLogoUrl} = updatedJob
     return (
       <div className="job-item-logo-name-card">
@@ -239,11 +239,13 @@ class JobsItemDetails extends Component {
     return this.renderSuccess()
   }
 
-  renderLoader = () => (
-    <div className="loader-container" data-testid="loader">
-      <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
-    </div>
-  )
+  static renderLoader() {
+    return (
+      <div className="loader-container" data-testid="loader">
+        <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
+      </div>
+    )
+  }
 
   render() {
     const {jobDetailsApi} = this.state
