@@ -55,7 +55,8 @@ class JobsItemDetails extends Component {
     }
   }
 
-  static renderLifeAtCompany(updatedJob) {
+  // eslint-disable-next-line class-methods-use-this
+  renderLifeAtCompany = updatedJob => {
     const {lifeAtCompany} = updatedJob
     const updatedLifeAtCompany = {
       imageUrl: lifeAtCompany.image_url,
@@ -79,7 +80,8 @@ class JobsItemDetails extends Component {
     )
   }
 
-  static renderSkills(updatedJob) {
+  // eslint-disable-next-line class-methods-use-this
+  renderSkills = updatedJob => {
     const {skills} = updatedJob
 
     return (
@@ -109,7 +111,8 @@ class JobsItemDetails extends Component {
     )
   }
 
-  static renderDescription(updatedJob) {
+  // eslint-disable-next-line class-methods-use-this
+  renderDescription = updatedJob => {
     const {jobDescription, companyWebsiteUrl} = updatedJob
 
     return (
@@ -130,7 +133,8 @@ class JobsItemDetails extends Component {
     )
   }
 
-  static renderLocationSalary(updatedJob) {
+  // eslint-disable-next-line class-methods-use-this
+  renderLocationSalary = updatedJob => {
     const {location, employmentType, packagePerAnnum} = updatedJob
     return (
       <div className="job-item-location-salary-card">
@@ -148,7 +152,8 @@ class JobsItemDetails extends Component {
     )
   }
 
-  static renderJobImageName(updatedJob) {
+  // eslint-disable-next-line class-methods-use-this
+  renderJobImageName = updatedJob => {
     const {rating, title, companyLogoUrl} = updatedJob
     return (
       <div className="job-item-logo-name-card">
@@ -239,13 +244,12 @@ class JobsItemDetails extends Component {
     return this.renderSuccess()
   }
 
-  static renderLoader() {
-    return (
-      <div className="loader-container" data-testid="loader">
-        <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
-      </div>
-    )
-  }
+  // eslint-disable-next-line class-methods-use-this
+  renderLoader = () => (
+    <div className="loader-container" data-testid="loader">
+      <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
+    </div>
+  )
 
   render() {
     const {jobDetailsApi} = this.state
